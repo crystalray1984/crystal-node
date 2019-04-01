@@ -1,0 +1,28 @@
+{
+    "name": "crystal-node",
+    "version": "1.0.0",
+    "description": "一个Node应用程序框架",
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "nyc mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/crystalray1984/crystal-node.git"
+    },
+    "keywords": [
+        "node"
+    ],
+    "author": "crystal1984",
+    "bugs": {
+        "url": "https://github.com/crystalray1984/crystal-node/issues"
+    },
+    "homepage": "https://github.com/crystalray1984/crystal-node#readme",
+    "dependencies": {
+        "extend2": "^1.0.0"
+    },
+    "devDependencies": {
+        "mocha": "^6.0.2",
+        "nyc": "^13.3.0"
+    }
+}
