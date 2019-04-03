@@ -1,7 +1,8 @@
 {
     "name": "crystal-node",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "一个Node应用程序框架",
+    "mainTypes": "./src/index.d.ts",
     "main": "./src/index.js",
     "scripts": {
         "test": "nyc mocha"
