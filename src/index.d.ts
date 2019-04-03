@@ -53,6 +53,11 @@ declare class Application<TDb = {}, TPaths = {}> extends EventEmitter {
 
     off(type: 'ready', listener: Listener): this
     off(type: string | number, listener: Listener): this
+
+    protected beforePreInit(): Promise<void>
+    protected afterPreInit(): Promise<void>
+    protected beforeInit(): Promise<void>
+    protected afterInit(): Promise<void>
 }
 
 declare namespace Application {

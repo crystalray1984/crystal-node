@@ -92,11 +92,15 @@ class Application extends EventEmitter {
         //加载环境特定配置文件
         this.config = extend2(true, this.config, tryRequire(path.resolve(this.paths.config, `./${process.env.NODE_ENV}`), {}))
 
+        await this.beforePreInit()
+
         //加载前置初始化代码
         let preInit = tryRequire(path.resolve(this.paths.init, './pre-init'))
         if (typeof preInit === 'function') {
             await preInit(this)
         }
+
+        await this.afterPreInit()
 
         //初始化数据库
         this.db = {}
@@ -113,11 +117,15 @@ class Application extends EventEmitter {
             }
         }
 
+        await this.beforeInit()
+
         //加载后置初始化代码
         let afterInit = tryRequire(path.resolve(this.paths.init))
         if (typeof afterInit === 'function') {
             await afterInit(this)
         }
+
+        await this.afterInit()
     }
 
     /**
@@ -170,6 +178,14 @@ class Application extends EventEmitter {
         }
         return this
     }
+
+    async beforePreInit() { }
+    
+    async afterPreInit() { }
+    
+    async beforeInit() { }
+    
+    async afterInit() {  }
 }
 
 module.exports = Application
