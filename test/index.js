@@ -5,20 +5,8 @@ const Application = require('../src')
 
 const app = new Application(__dirname)
 
-assert.strictEqual(app.config.db.mysql.url, 1)
-
 app.on('ready', () => {
-    console.log('app is ready')
-})
-
-app.once('ready', () => {
-    console.log('app is ready')
-})
-
-app.prependListener('ready', () => {
-    console.log('app is ready')
-})
-
-app.prependOnceListener('ready', () => {
-    console.log('app is ready')
+    app.db.redis.echo('redis').then(resp => {
+        console.log(resp)
+    })
 })

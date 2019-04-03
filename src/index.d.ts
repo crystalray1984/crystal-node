@@ -1,11 +1,13 @@
 import { EventEmitter } from 'events'
+import Mysql from 'crystal-node-mysql'
+import Redis from 'crystal-node-redis'
 
 declare type Listener = (...args: any) => void
 
 /**
  * 应用程序
  */
-declare class Application extends EventEmitter {
+declare class Application<TDb = {}, TPaths = {}> extends EventEmitter {
     /**
      * 初始化应用程序
      * @param root 应用程序根路径
@@ -15,7 +17,7 @@ declare class Application extends EventEmitter {
     /**
      * 路径配置对象
      */
-    readonly paths: Application.Paths
+    readonly paths: Application.Paths & TPaths
 
     /**
      * 应用是否已初始化完成
@@ -26,6 +28,10 @@ declare class Application extends EventEmitter {
      * 应用程序初始化Promise
      */
     ready(): Promise<void>
+
+    readonly db: Application.DbPools & TDb
+
+    config: object
 
     on(type: 'ready', listener: Listener): this
     on(type: string | number, listener: Listener): this
@@ -78,6 +84,11 @@ declare namespace Application {
          * 初始化代码路径
          */
         readonly init: string
+    }
+
+    interface DbPools {
+        mysql?: Mysql.Pool
+        redis?: Redis.Pool
     }
 }
 

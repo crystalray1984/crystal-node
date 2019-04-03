@@ -2,8 +2,10 @@
 
 module.exports = {
     db: {
-        mysql: {
-            url: 1
-        }
+        // mysql: {
+        //     url: 1
+        // },
+
+        redis: {}
     }
 }
